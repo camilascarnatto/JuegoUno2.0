@@ -49,4 +49,10 @@ public class VentanaPrincipal extends JFrame implements IVista {
 		
 	}
 
+	@Override
+	public void setEstadoSeteando() {
+		// TODO Auto-generated method stub
+		
+	}
+
 }

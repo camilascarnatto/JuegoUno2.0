@@ -1,9 +1,11 @@
 package controlador;
 
 import java.rmi.RemoteException;
+import java.util.ArrayList;
 
 import controlador.IVista;
 import modelo.JuegoPublico;
+import modelo.Jugador;
 import modelo_controlador.IObservador;
 import modelo_controlador.posiblesCambios;
 
@@ -16,8 +18,10 @@ public class Controlador implements IObservador/*implements IControladorRemoto C
 	private JuegoPublico juego;
 	private IVista vista;
 
-	public Controlador() {
-
+	public Controlador(IVista vista) {
+		this.vista = vista;
+		juego.agregarObservador(this);
+		vista.setEstadoSeteando();
 	}
 
 	public void setVista(IVista vista) {
@@ -41,6 +45,14 @@ public class Controlador implements IObservador/*implements IControladorRemoto C
 		}
 		
 	}
+	
+	public int cantidadJugadores() {
+		return juego.getCantidadJugadores();
+	}
 
-
+	public ArrayList<Jugador> getJugadores() {
+		return juego.getJugadores();
+	}
+		
+	
 }

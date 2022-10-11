@@ -1,10 +1,19 @@
 package modelo;
 
+import java.util.ArrayList;
+
+import modelo_controlador.IObservador;
+
 public interface JuegoPublico /* extends IObservableRemoto */{
 
 	int agregarJugador(String nombre);
 
-	Object getJugadores();
+	ArrayList<Jugador> getJugadores();
+	
+	void agregarObservador(IObservador observador);
+	
+	int getCantidadJugadores();
+	
 	
 	/*
 	void gestionarEspejito(int numeroJugador, int cartaAHacerEspejito,long diferencia) throws RemoteException;

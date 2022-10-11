@@ -20,4 +20,5 @@ public interface IVista {
  */
 
 	void actualizarListaJugadores(Object jugadores);
+	void setEstadoSeteando();
 }
