@@ -3,6 +3,7 @@ package vista;
 import controlador.Controlador;
 import controlador.IVista;
 import modelo.estadoJuego;
+import modelo.EstadosVista;
 import modelo.Jugador;
 
 import java.util.ArrayList;
@@ -11,7 +12,7 @@ import java.util.Scanner;
 public class VistaConsola implements IVista {
 	
 	private Controlador controlador;
-	private estadoJuego estado;
+	private EstadosVista estado;
 	private ArrayList<Jugador> jugadores = new ArrayList<>();
 	
 	public VistaConsola () {
@@ -121,9 +122,10 @@ public class VistaConsola implements IVista {
 		
 	}
 
+	
 	@Override
-	public void setEstadoSeteando() {
-		this.estado = estado.SETEANDO;
+	public void setEstadoVista(EstadosVista estado) {
+		this.estado = estado;
 	}
 
 }

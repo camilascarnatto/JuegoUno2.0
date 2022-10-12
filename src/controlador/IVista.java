@@ -1,5 +1,7 @@
 package controlador;
 
+import modelo.EstadosVista;
+
 public interface IVista {
 
 /*
@@ -20,5 +22,5 @@ public interface IVista {
  */
 
 	void actualizarListaJugadores(Object jugadores);
-	void setEstadoSeteando();
+	void setEstadoVista(EstadosVista estado);
 }

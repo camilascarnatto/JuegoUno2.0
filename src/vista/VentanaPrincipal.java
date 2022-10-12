@@ -7,6 +7,7 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
 import controlador.IVista;
+import modelo.EstadosVista;
 
 public class VentanaPrincipal extends JFrame implements IVista {
 
@@ -49,8 +50,10 @@ public class VentanaPrincipal extends JFrame implements IVista {
 		
 	}
 
+	
+
 	@Override
-	public void setEstadoSeteando() {
+	public void setEstadoVista(EstadosVista estado) {
 		// TODO Auto-generated method stub
 		
 	}

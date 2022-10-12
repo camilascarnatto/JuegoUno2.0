@@ -8,6 +8,7 @@ import modelo.JuegoPublico;
 import modelo.Jugador;
 import modelo_controlador.IObservador;
 import modelo_controlador.posiblesCambios;
+import modelo.EstadosVista;
 
 /*
  * JuegoPublico es para RMI pero se puede implementar ahora
@@ -17,11 +18,12 @@ public class Controlador implements IObservador/*implements IControladorRemoto C
 
 	private JuegoPublico juego;
 	private IVista vista;
+	private EstadosVista estadoVista;
 
 	public Controlador(IVista vista) {
 		this.vista = vista;
 		juego.agregarObservador(this);
-		vista.setEstadoSeteando();
+		vista.setEstadoVista(estadoVista.SETEANDO);
 	}
 
 	public void setVista(IVista vista) {
