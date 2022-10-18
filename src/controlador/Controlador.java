@@ -23,7 +23,7 @@ public class Controlador implements IObservador/*implements IControladorRemoto C
 	public Controlador(IVista vista) {
 		this.vista = vista;
 		juego.agregarObservador(this);
-		vista.setEstadoVista(estadoVista.SETEANDO);
+		vista.setEstadoVista(EstadosVista.SETEANDO);
 	}
 
 	public void setVista(IVista vista) {

@@ -43,45 +43,53 @@ public class VistaConsola implements IVista {
 	}
 
 	private void mostrarMenuSeteando() {
-		Scanner scanner = new Scanner(System.in);
 		String option = "";
-		
-		do {
-			System.out.println();
-			System.out.println("--------------------------------");
-			System.out.println("-          JUEGO UNO           -");
-			System.out.println("--------------------------------");
-			System.out.println("- 1 -> Agregar jugador         -");
-			System.out.println("- 2 -> Mostrar jugadores       -");
-			System.out.println("- 3 -> Salir del juego         -");
-			System.out.println("--------------------------------");
-			System.out.println("- Su opcion es:    \n");
-			option = scanner.nextLine();
-		}while(!validarOpcionIngresada(option, "1", "2", "3"));
-		
-		switch (option) {
-		case "1":
-				if(controlador.cantidadJugadores() < 4) {
-					controlador.agregarJugador(pedirNombre());
-				}else
-					System.out.println("\n Ya hay jugadores suficientes para iniciar el juego");
-			break;
-		case "2":
-				jugadores = controlador.getJugadores();
-				int nroJugador = 1;
-				for(Jugador jugador : jugadores) {
-					System.out.println("Jugador " + nroJugador + ": " + jugador.getNombre() );
-					nroJugador++;
-				}
-			break;
-		case "3":
-				mostrarMenuFin();
-			break;
+		Scanner scanner = null;
+		try {
+			 scanner = new Scanner(System.in);
+			do {
+				System.out.println();
+				System.out.println("--------------------------------");
+				System.out.println("-          JUEGO UNO           -");
+				System.out.println("--------------------------------");
+				System.out.println("- 1 -> Agregar jugador         -");
+				System.out.println("- 2 -> Mostrar jugadores       -");
+				System.out.println("- 3 -> Salir del juego         -");
+				System.out.println("--------------------------------");
+				System.out.println("- Su opcion es:    \n");
+				option = scanner.nextLine();
+			}while(!validarOpcionIngresada(option, "1", "2", "3"));
+			
+			switch (option) {
+			case "1":
+					if(controlador.cantidadJugadores() < 4) {
+						controlador.agregarJugador(pedirNombre());
+					}else
+						mostrarMsj("\n Ya hay jugadores suficientes para iniciar el juego");
+				break;
+			case "2":
+					jugadores = controlador.getJugadores();
+					int nroJugador = 1;
+					for(Jugador jugador : jugadores) {
+						System.out.println("Jugador " + nroJugador + ": " + jugador.getNombre() );
+						nroJugador++;
+					}
+				break;
+			case "3":
+					mostrarMenuFin();
+				break;
 
-		default:
-				System.out.println("Ingrese una opcion correcta");
-			break;
+			default:
+					mostrarMsj("Ingrese una opcion correcta");
+				break;
+			}
 		}
+		finally {
+			if(scanner != null)
+				scanner.close();
+		}
+		
+		
 	}
 	
 	
@@ -126,6 +134,10 @@ public class VistaConsola implements IVista {
 	@Override
 	public void setEstadoVista(EstadosVista estado) {
 		this.estado = estado;
+	}
+	
+	public void mostrarMsj(String message) {
+		System.out.println(message);
 	}
 
 }

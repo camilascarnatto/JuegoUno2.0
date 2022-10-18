@@ -14,6 +14,9 @@ public interface JuegoPublico /* extends IObservableRemoto */{
 	
 	int getCantidadJugadores();
 	
+	void msjError(String errorMessage);
+	
+	
 	
 	/*
 	void gestionarEspejito(int numeroJugador, int cartaAHacerEspejito,long diferencia) throws RemoteException;

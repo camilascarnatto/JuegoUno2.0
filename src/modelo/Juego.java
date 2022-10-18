@@ -17,6 +17,7 @@ public class Juego /*extends ObservableRemoto*/ implements JuegoPublico/*,Serial
 	private ArrayList<Jugador> jugadores = new ArrayList<>();
 	private Mazo mazo = new Mazo();
 	private int jugadorActual;
+	private String errorMsj = "";
 	private estadoJuego estado = estadoJuego.INICIAL;
 	
 	/**
@@ -58,10 +59,11 @@ public class Juego /*extends ObservableRemoto*/ implements JuegoPublico/*,Serial
 			nroJugador = jugadores.indexOf(nuevoJugador);
 			notificarObservadores(posiblesCambios.ACTUALIZAR_LISTA_JUGADORES);
 		}else
-			System.out.println("Solo se permite hasta cuatro jugadores!");
+			msjError("Solo se permite hasta cuatro jugadores!");
 		
 		if(jugadores.size() >= 2) {
 			cambiarEstado(estadoJuego.JUGABLE);
+			estado = estadoJuego.JUGABLE;
 		}
 		
 		return nroJugador;
@@ -90,5 +92,13 @@ public class Juego /*extends ObservableRemoto*/ implements JuegoPublico/*,Serial
 	public int getCantidadJugadores () {
 		return jugadores.size();
 	}
+
+	@Override
+	public void msjError(String errorMessage) {
+		this.errorMsj = errorMessage;
+		notificarObservadores(posiblesCambios.ERROR);
+	}
+
+	
 
 }
