@@ -6,14 +6,16 @@ public class Jugador {
 	
 	private String nombre;
 	private int puntaje;
-	private int nroJugador = -1;
-	//private ArrayList<Carta> cartas;
+	private estadoJugador estado;
+	private ArrayList<CartaUno> cartas;
+	private boolean enTurno = false;
+	private boolean levanto = false;
+	private boolean tiro = false;
 	
-	public Jugador (String nombre, int nroJugador) {
+	public Jugador (String nombre) {
 		this.nombre = nombre;
 		this.puntaje = 0;
-		this.nroJugador = nroJugador;
-		//this.puntaje = new ArrayList<>();
+		this.cartas = new ArrayList<>();
 	}
 	
 	public String getNombre() {
@@ -23,14 +25,65 @@ public class Jugador {
     public int getPuntos() {
         return puntaje;
     }
+    
+    public ArrayList<CartaUno> getCartas(){
+    	ArrayList<CartaUno> arrayAux = new ArrayList<>();
+    	for( CartaUno carta: cartas) {
+    		arrayAux.add(carta);
+    	}
+    	return arrayAux;
+    }
+    
+    public int cantidadCartas() {
+    	return cartas.size();
+    }
 
+    public String getEstado() {
+    	return estado.toString();
+    }
+    
     public void aumentarPuntos(int puntos) {
         this.puntaje += puntos;
     }
     
-   /* public int numCartas() {
-        return this.cartas.size();
+    public CartaUno getCarta(int posCarta) {
+    	return this.cartas.get(posCarta);
     }
-   */
+    
+    public void removeCarta(int posCarta) {
+    	this.cartas.remove(posCarta);
+    }
+   
+    public boolean sinCartas() {
+    	return this.cartas.isEmpty();
+    }
+    
+    public int puntosDeLaMano() {
+    	int puntos = 0;
+    	for(CartaUno carta : this.cartas) {
+    		if(carta.isEspecial()) {
+    			puntos += carta.getEfecto().getPuntos();
+    		}else
+    			puntos += carta.getNumero();
+    	}
+    	return puntos;
+    }
 
+    /*
+     * Agregar mas de una carta
+     */    
+    public void agregarCartas(ArrayList<CartaUno> cartas) {
+    	for(CartaUno carta: cartas) {
+    		this.cartas.add(carta);
+    	}
+    }
+    
+    /**
+     * 
+     * Agregar una sola carta
+     */
+    public void agregarCartas(CartaUno carta) {
+    	this.cartas.add(carta);
+    }
+    
 }
