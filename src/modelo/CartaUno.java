@@ -51,7 +51,7 @@ public class CartaUno extends Carta<ColoresCartaUno> {
                     estado = "+4"; // no tiene color porque es negra
                     break;
                 case SALTO:
-                    estado = "SALTO TURNO " + palo;
+                    estado = "SALTEAR " + palo;
                     break;
                 case REVERSA:
                     estado = "REVERSO " + palo;

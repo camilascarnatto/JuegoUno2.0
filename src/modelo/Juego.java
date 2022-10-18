@@ -13,10 +13,11 @@ public class Juego /*extends ObservableRemoto*/ implements JuegoPublico/*,Serial
 	/* ObservableRemoto implementa el array de observadores internamente
 	 * Cuando se implemente RMI va a haber que borrarlo de aca 
 	 */
-	private ArrayList<IObservador> observadores;
+	private ArrayList<IObservador> observadores = new ArrayList<>();
 	private ArrayList<Jugador> jugadores = new ArrayList<>();
-	private Mazo mazo = new Mazo();
-	private int jugadorActual;
+	private MazoUno mazo = new MazoUno();
+	private MazoUno mazoDescarte = new MazoUno();
+	private int jugadorEnTurno = -1;
 	private String errorMsj = "";
 	private estadoJuego estado = estadoJuego.INICIAL;
 	
@@ -54,7 +55,7 @@ public class Juego /*extends ObservableRemoto*/ implements JuegoPublico/*,Serial
 	public int agregarJugador(String nombre) {
 		int nroJugador = -1;
 		if(jugadores.size() != 4) {
-			Jugador nuevoJugador = new Jugador(nombre, jugadores.size());
+			Jugador nuevoJugador = new Jugador(nombre);
 			jugadores.add(nuevoJugador);
 			nroJugador = jugadores.indexOf(nuevoJugador);
 			notificarObservadores(posiblesCambios.ACTUALIZAR_LISTA_JUGADORES);
