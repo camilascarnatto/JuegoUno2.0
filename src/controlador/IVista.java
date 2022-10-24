@@ -1,6 +1,8 @@
 package controlador;
 
+import java.util.ArrayList;
 import modelo.EstadosVista;
+import modelo.Jugador;
 
 public interface IVista {
 
@@ -21,6 +23,8 @@ public interface IVista {
 	void comenzoJuego();
  */
 
-	void actualizarListaJugadores(Object jugadores);
+	void actualizarListaJugadores(ArrayList<Jugador> jugadores);
 	void setEstadoVista(EstadosVista estado);
+	void comenzar();
+	void setControlador(Controlador controlador);
 }

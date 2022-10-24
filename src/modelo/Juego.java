@@ -21,16 +21,9 @@ public class Juego /*extends ObservableRemoto*/ implements JuegoPublico/*,Serial
 	private String errorMsj = "";
 	private estadoJuego estado = estadoJuego.INICIAL;
 	
-	/**
-	 * SINGLETON
-	 */
-	private static Juego instancia = new Juego();
 	
-	public static Juego getInstance () {
-		return instancia;
-	}
 	
-	private Juego() {
+	public Juego() {
 		
 	}
 	
@@ -78,13 +71,6 @@ public class Juego /*extends ObservableRemoto*/ implements JuegoPublico/*,Serial
 		notificarObservadores(posiblesCambios.ESTADO_JUEGO);
 	}
 
-	@Override
-	public ArrayList<Jugador> getJugadores() {
-		ArrayList<Jugador> jugadoresDuplicados = new ArrayList<>();
-		for (Jugador jugador:jugadores) 
-			jugadoresDuplicados.add(jugador);
-		return jugadoresDuplicados;
-	}
 	
 	public String getEstado() {
 		return estado.name();
@@ -94,12 +80,19 @@ public class Juego /*extends ObservableRemoto*/ implements JuegoPublico/*,Serial
 		return jugadores.size();
 	}
 
-	@Override
-	public void msjError(String errorMessage) {
+
+	private void msjError(String errorMessage) {
 		this.errorMsj = errorMessage;
 		notificarObservadores(posiblesCambios.ERROR);
 	}
-
+	
+	@Override
+	public ArrayList<Jugador> getJugadores(){
+		ArrayList<Jugador> jugadoresDuplicados = new ArrayList<>();
+		for (Jugador jugador:jugadores) 
+			jugadoresDuplicados.add(jugador.duplicar());
+		return jugadoresDuplicados;
+	}
 	
 
 }

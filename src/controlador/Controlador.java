@@ -20,12 +20,20 @@ public class Controlador implements IObservador/*implements IControladorRemoto C
 	private IVista vista;
 	private EstadosVista estadoVista;
 
-	public Controlador(IVista vista) {
+	public Controlador(IVista vista, JuegoPublico juego) {
+		
 		this.vista = vista;
+		this.juego = juego;
+		vista.setControlador(this);
 		juego.agregarObservador(this);
 		vista.setEstadoVista(EstadosVista.SETEANDO);
 	}
 
+	public void iniciar() {
+		
+		vista.comenzar();
+	}
+	
 	public void setVista(IVista vista) {
 		this.vista =  vista;
 	}
@@ -43,6 +51,8 @@ public class Controlador implements IObservador/*implements IControladorRemoto C
 		switch (cambio) {
 		case ACTUALIZAR_LISTA_JUGADORES:
 			vista.actualizarListaJugadores(juego.getJugadores());
+			break;
+		default:
 			break;
 		}
 		

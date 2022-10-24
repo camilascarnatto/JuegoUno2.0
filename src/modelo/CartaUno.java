@@ -67,4 +67,9 @@ public class CartaUno extends Carta<ColoresCartaUno> {
         return estado;
     }
 
+	public CartaUno duplicar() {
+		CartaUno cartaDuplicada = new CartaUno(super.numero, super.palo);
+		return cartaDuplicada;
+	}
+
 }

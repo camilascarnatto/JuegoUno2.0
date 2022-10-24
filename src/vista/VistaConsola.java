@@ -7,6 +7,7 @@ import modelo.EstadosVista;
 import modelo.Jugador;
 
 import java.util.ArrayList;
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class VistaConsola implements IVista {
@@ -25,6 +26,7 @@ public class VistaConsola implements IVista {
 	
 	
 	public void comenzar() {
+		
 		do {
 			mostrarMenu();
 			
@@ -41,7 +43,53 @@ public class VistaConsola implements IVista {
 		}
 		
 	}
-
+	
+	private void mostrarMenuSeteando() {
+		Scanner sn = new Scanner(System.in);
+		boolean salir = false;
+		int opcion; // se guarda la opcion del usuario
+		
+		while(!salir) {
+			System.out.println(" ");
+			System.out.println("1. Agregar jugador");
+			System.out.println("2. Mostrar jugadores");
+			System.out.println("3. Salir");
+			System.out.println(" ");
+			
+			try {
+				System.out.println("Ingrese una opcion");
+				opcion = sn.nextInt();
+				
+				switch(opcion) {
+					case 1: 
+						controlador.agregarJugador(pedirNombre());
+						break;
+					case 2:
+						jugadores = controlador.getJugadores();
+						int nroJugador = 1;
+						System.out.println("LISTA DE JUGADORES:");
+						for(Jugador jugador : jugadores) {
+							System.out.println("Jugador [" + nroJugador + "] - " + jugador.getNombre() );
+							nroJugador++;
+						}
+						break;
+					case 3:
+						salir = true;
+						mostrarMenuFin();
+						break;
+					default:
+							System.out.println("Solo numeros entre 1 y 3");
+						
+				}
+			} catch(InputMismatchException e) {
+				System.out.println("Debe insertar un numero");
+				sn.next();
+			}
+			
+		}
+	}
+	
+/*
 	private void mostrarMenuSeteando() {
 		String option = "";
 		Scanner scanner = null;
@@ -58,14 +106,13 @@ public class VistaConsola implements IVista {
 				System.out.println("--------------------------------");
 				System.out.println("- Su opcion es:    \n");
 				option = scanner.nextLine();
-			}while(!validarOpcionIngresada(option, "1", "2", "3"));
+			}while(scanner.hasNextLine() && !validarOpcionIngresada(option, "1", "2", "3"));
 			
 			switch (option) {
 			case "1":
-					if(controlador.cantidadJugadores() < 4) {
-						controlador.agregarJugador(pedirNombre());
-					}else
-						mostrarMsj("\n Ya hay jugadores suficientes para iniciar el juego");
+					controlador.agregarJugador(pedirNombre());
+					
+					
 				break;
 			case "2":
 					jugadores = controlador.getJugadores();
@@ -92,7 +139,7 @@ public class VistaConsola implements IVista {
 		
 	}
 	
-	
+ */	
 	private void mostrarMenuFin() {
 		System.out.println("");
 		System.out.println("---------------------------------------");
@@ -125,8 +172,9 @@ public class VistaConsola implements IVista {
 	}
 
 	@Override
-	public void actualizarListaJugadores(Object jugadores) {
-		// TODO Auto-generated method stub
+	public void actualizarListaJugadores(ArrayList<Jugador> jugadores) {
+		this.jugadores = jugadores;
+		mostrarMsj("[Se han actualizado los jugadores]");
 		
 	}
 

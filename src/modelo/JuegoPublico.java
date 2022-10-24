@@ -14,7 +14,7 @@ public interface JuegoPublico /* extends IObservableRemoto */{
 	
 	int getCantidadJugadores();
 	
-	void msjError(String errorMessage);
+	//void msjError(String errorMessage);
 	
 	
 	

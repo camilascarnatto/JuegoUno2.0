@@ -1,13 +1,16 @@
 package vista;
 
 import java.awt.EventQueue;
+import java.util.ArrayList;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
+import controlador.Controlador;
 import controlador.IVista;
 import modelo.EstadosVista;
+import modelo.Jugador;
 
 public class VentanaPrincipal extends JFrame implements IVista {
 
@@ -45,7 +48,7 @@ public class VentanaPrincipal extends JFrame implements IVista {
 	}
 
 	@Override
-	public void actualizarListaJugadores(Object jugadores) {
+	public void actualizarListaJugadores(ArrayList<Jugador> jugadores) {
 		// TODO Auto-generated method stub
 		
 	}
@@ -54,6 +57,18 @@ public class VentanaPrincipal extends JFrame implements IVista {
 
 	@Override
 	public void setEstadoVista(EstadosVista estado) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void comenzar() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void setControlador(Controlador controlador) {
 		// TODO Auto-generated method stub
 		
 	}
