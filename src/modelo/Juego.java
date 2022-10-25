@@ -86,6 +86,10 @@ public class Juego /*extends ObservableRemoto*/ implements JuegoPublico/*,Serial
 		notificarObservadores(posiblesCambios.ERROR);
 	}
 	
+	public String getError() {
+		return errorMsj;
+	}
+	
 	@Override
 	public ArrayList<Jugador> getJugadores(){
 		ArrayList<Jugador> jugadoresDuplicados = new ArrayList<>();

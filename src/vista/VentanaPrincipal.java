@@ -115,4 +115,10 @@ public class VentanaPrincipal extends JFrame implements IVista, ActionListener {
 		label.setText("Number of clicks: " + count);
 	}
 
+	@Override
+	public void error(String error) {
+		// TODO Auto-generated method stub
+		
+	}
+
 }

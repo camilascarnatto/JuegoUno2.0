@@ -89,7 +89,7 @@ public class VistaConsola implements IVista {
 		}
 	}
 	
-/*
+ /*
 	private void mostrarMenuSeteando() {
 		String option = "";
 		Scanner scanner = null;
@@ -140,6 +140,7 @@ public class VistaConsola implements IVista {
 	}
 	
  */	
+	
 	private void mostrarMenuFin() {
 		System.out.println("");
 		System.out.println("---------------------------------------");
@@ -186,6 +187,12 @@ public class VistaConsola implements IVista {
 	
 	public void mostrarMsj(String message) {
 		System.out.println(message);
+	}
+
+	@Override
+	public void error(String error) {
+		System.out.println(error);
+		
 	}
 
 }

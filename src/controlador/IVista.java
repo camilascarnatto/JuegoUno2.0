@@ -27,4 +27,5 @@ public interface IVista {
 	void setEstadoVista(EstadosVista estado);
 	void comenzar();
 	void setControlador(Controlador controlador);
+	void error(String error);
 }
