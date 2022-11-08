@@ -52,13 +52,18 @@ public class Juego /*extends ObservableRemoto*/ implements JuegoPublico/*,Serial
 			jugadores.add(nuevoJugador);
 			nroJugador = jugadores.indexOf(nuevoJugador);
 			notificarObservadores(posiblesCambios.ACTUALIZAR_LISTA_JUGADORES);
-		}else
-			msjError("Solo se permite hasta cuatro jugadores!");
-		
-		if(jugadores.size() >= 2) {
-			cambiarEstado(estadoJuego.JUGABLE);
-			estado = estadoJuego.JUGABLE;
+		}else {
+			msjError("SOLO SE PERMITE HASTA 4 JUGADORES!");			
 		}
+		
+		if(jugadores.size() == 1) {
+			cambiarEstado(estadoJuego.SETEANDO);
+			estado = estadoJuego.SETEANDO;
+		}else 
+			if(jugadores.size() >= 2) {
+				cambiarEstado(estadoJuego.JUGABLE);
+				estado = estadoJuego.JUGABLE;
+			}
 		
 		return nroJugador;
 	}

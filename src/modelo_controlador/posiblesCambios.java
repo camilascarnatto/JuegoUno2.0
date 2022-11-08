@@ -22,7 +22,9 @@ public enum posiblesCambios {
 	
 	CARGANDO_JUEGO,
 	
-	COMENZO_JUEGO
+	COMENZO_JUEGO,
+	
+	SALIR_JUEGO
 	
 	
 	

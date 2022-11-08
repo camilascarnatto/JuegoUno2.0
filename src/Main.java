@@ -1,15 +1,16 @@
 import controlador.*;
 import modelo.Juego;
 import vista.VistaConsola;
+import vista.VentanaPrincipal;
 
 public class Main {
 	
 	public static void main(String[] args) {
-		IVista vista = new VistaConsola();
+		IVista vistaConsola = new VistaConsola();
+		IVista ventanaPrincipal = new VentanaPrincipal();
 		Juego juego = new Juego();
-		Controlador controlador = new Controlador(vista, juego);
+		Controlador controlador = new Controlador(ventanaPrincipal, juego);
 		
-		//vista.setControlador(controlador);
 		controlador.iniciar();
 	}
 }

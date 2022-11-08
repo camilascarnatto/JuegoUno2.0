@@ -28,4 +28,5 @@ public interface IVista {
 	void comenzar();
 	void setControlador(Controlador controlador);
 	void error(String error);
+	void salirJuego();
 }

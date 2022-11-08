@@ -13,7 +13,7 @@ public class Jugador {
 	private boolean tiro = false;
 	
 	public Jugador(String nombre) {
-		this(nombre, 0, new ArrayList<>(), estadoJugador.JUGANDO, false, false, false);
+		this(nombre, 0, new ArrayList<>(), estadoJugador.INICIAL, false, false, false);
 	}
 	
 	public Jugador (String nombre, int puntaje, ArrayList<CartaUno> cartas, estadoJugador estado, boolean enTurno, boolean levanto, boolean tiro) {
@@ -87,7 +87,6 @@ public class Jugador {
     }
     
     /**
-     * 
      * Agregar una sola carta
      */
     public void agregarCartas(CartaUno carta) {
@@ -102,5 +101,34 @@ public class Jugador {
 		Jugador jugadorDuplicado = new Jugador(this.nombre, this.puntaje, cartasDuplicadas, this.estado, this.enTurno, this.levanto, this.tiro);
 		return jugadorDuplicado;
 	}
+	
+	public boolean yaLevanto() {
+		return levanto;
+	}
+	
+	public void setLevanto(boolean levanto) {
+		this.levanto = levanto;
+	}
+	
+	public boolean yaTiro() {
+		return tiro;
+	}
+	public void setTiro(boolean tiro) {
+		this.tiro = tiro;
+	}
+	
+	public void setEnTurno(boolean enTurno) {
+		this.enTurno = enTurno;
+	}
+	
+	public boolean enTurno() {
+		return enTurno;
+	}
+	
+	public boolean isJugando() {
+		return estado == estadoJugador.JUGANDO;
+	}
+	
+	
     
 }

@@ -54,6 +54,9 @@ public class Controlador implements IObservador/*implements IControladorRemoto C
 			break;
 		case ERROR:
 			vista.error(juego.getError());
+			break;
+		case SALIR_JUEGO:
+			vista.salirJuego();
 		default:
 			break;
 		}
