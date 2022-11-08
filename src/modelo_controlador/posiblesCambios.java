@@ -22,6 +22,8 @@ public enum posiblesCambios {
 	
 	CARGANDO_JUEGO,
 	
+	SETEANDO,
+	
 	COMENZO_JUEGO,
 	
 	SALIR_JUEGO

@@ -16,6 +16,8 @@ public interface JuegoPublico /* extends IObservableRemoto */{
 	
 	String getError();
 	
+	String getEstado();
+	
 	
 	
 	/*

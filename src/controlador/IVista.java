@@ -3,12 +3,12 @@ package controlador;
 import java.util.ArrayList;
 import modelo.EstadosVista;
 import modelo.Jugador;
+import modelo.estadoJuego;
 
 public interface IVista {
 
 /*
 	void nuevasCartasJugadores(ArrayList<Jugador> jugadores);
-	void nuevoEstadoJuego(String estado);
 	void nuevoTurnoJugador(int numeroJugador);
 	void nuevaCartaDescartada(Carta cartaDescartada);
 	void terminarJuego(int ganador);
@@ -29,4 +29,6 @@ public interface IVista {
 	void setControlador(Controlador controlador);
 	void error(String error);
 	void salirJuego();
+	void nuevoEstadoJuego(String estadoJuego);
+
 }

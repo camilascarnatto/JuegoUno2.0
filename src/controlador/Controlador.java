@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import controlador.IVista;
 import modelo.JuegoPublico;
 import modelo.Jugador;
+import modelo.estadoJuego;
 import modelo_controlador.IObservador;
 import modelo_controlador.posiblesCambios;
 import modelo.EstadosVista;
@@ -57,6 +58,9 @@ public class Controlador implements IObservador/*implements IControladorRemoto C
 			break;
 		case SALIR_JUEGO:
 			vista.salirJuego();
+			break;
+		case ESTADO_JUEGO:
+			vista.nuevoEstadoJuego(juego.getEstado().toString());
 		default:
 			break;
 		}
@@ -69,6 +73,10 @@ public class Controlador implements IObservador/*implements IControladorRemoto C
 
 	public ArrayList<Jugador> getJugadores() {
 		return juego.getJugadores();
+	}
+	
+	public String getEstadoJuego() {
+		return juego.getEstado().toString();
 	}
 		
 	

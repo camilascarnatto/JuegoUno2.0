@@ -58,21 +58,21 @@ public class Juego /*extends ObservableRemoto*/ implements JuegoPublico/*,Serial
 		
 		if(jugadores.size() == 1) {
 			cambiarEstado(estadoJuego.SETEANDO);
-			estado = estadoJuego.SETEANDO;
 		}else 
 			if(jugadores.size() >= 2) {
 				cambiarEstado(estadoJuego.JUGABLE);
-				estado = estadoJuego.JUGABLE;
 			}
 		
 		return nroJugador;
 	}
 
-	private void cambiarEstado(estadoJuego estado) {
-		/*switch (estado) {
+	private void cambiarEstado(estadoJuego nuevoEstado) {
+		switch (nuevoEstado) {
 		case JUGANDO:
-			
-		}*/
+			break;
+		default:
+			this.estado = nuevoEstado;
+		}
 		notificarObservadores(posiblesCambios.ESTADO_JUEGO);
 	}
 

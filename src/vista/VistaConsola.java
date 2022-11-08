@@ -164,4 +164,12 @@ public class VistaConsola implements IVista {
 
 	}
 
+	
+
+	@Override
+	public void nuevoEstadoJuego(String estadoJuego) {
+		// TODO Auto-generated method stub
+		
+	}
+
 }

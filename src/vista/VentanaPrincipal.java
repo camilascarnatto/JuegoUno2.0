@@ -25,6 +25,7 @@ import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 import controlador.Controlador;
+import modelo.estadoJuego;
 import controlador.IVista;
 import modelo.EstadosVista;
 import modelo.Jugador;
@@ -52,9 +53,6 @@ public class VentanaPrincipal extends JFrame implements IVista, ActionListener {
 	private JButton btnUno;
 	private JButton btnComenzarJuego;
 	private JButton btnAgregarJugador;
-	private JButton boton2;
-	private JButton boton3;
-	private JButton boton4;
 		
 	private JPanel panelPrincipal;
 	private JPanel panelCentral;
@@ -239,6 +237,27 @@ public class VentanaPrincipal extends JFrame implements IVista, ActionListener {
 	@Override
 	public void salirJuego() {
 		// TODO Auto-generated method stub
+		
+	}
+	
+	/**
+	 * Actualiza el estado del juego
+	 * en el lblEstado del panel superior
+	 */
+	@Override
+	public void nuevoEstadoJuego(String estado) {
+		lblEstadoDeJuego.setText(estado.toString());
+		if(estado.equals("SETEANDO")) {
+			lblInformativo.setText("Para comenzar agregue jugadores");
+		}
+		if(estado.equals("INICIAL")) {
+			lblInformativo.setText("Configurando juego");
+		}
+		if (estado.equals("JUGABLE")) {
+			lblInformativo.setText("Podes comenzar a jugar o continuar agregando jugadores.");
+			btnComenzarJuego.setVisible(true);
+		}
+		
 		
 	}
 
