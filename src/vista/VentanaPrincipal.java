@@ -229,7 +229,8 @@ public class VentanaPrincipal extends JFrame implements IVista, ActionListener {
 
 	@Override
 	public void error(String error) {
-		
+		JOptionPane.showMessageDialog(null, error, 
+				"Warning", JOptionPane.WARNING_MESSAGE);
 	}
 	
 	
