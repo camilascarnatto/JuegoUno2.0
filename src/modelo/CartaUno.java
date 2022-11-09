@@ -5,15 +5,15 @@ public class CartaUno extends Carta<ColoresCartaUno> {
 	
     private EfectosCartaUno efecto;
 
-    public CartaUno(int numero, ColoresCartaUno color) {
-        super(numero, color);
+    public CartaUno(int numero, ColoresCartaUno color, boolean visible) {
+        super(numero, color, visible);
     }
 
     public CartaUno() {
     }
 
-    public CartaUno(ColoresCartaUno color, EfectosCartaUno efecto) {
-        super(-1, color); // -1 para las que ya tienen un efecto
+    public CartaUno(ColoresCartaUno color, EfectosCartaUno efecto, boolean visible) {
+        super(-1, color, visible); // -1 para las que ya tienen un efecto
         this.efecto = efecto;
     }
 
@@ -68,8 +68,12 @@ public class CartaUno extends Carta<ColoresCartaUno> {
     }
 
 	public CartaUno duplicar() {
-		CartaUno cartaDuplicada = new CartaUno(super.numero, super.palo);
+		CartaUno cartaDuplicada = new CartaUno(super.numero, super.palo, super.visible);
 		return cartaDuplicada;
+	}
+	
+	public void setVisible(boolean visible) {
+		this.visible = visible;
 	}
 
 }

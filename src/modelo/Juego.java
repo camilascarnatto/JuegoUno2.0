@@ -18,6 +18,7 @@ public class Juego /*extends ObservableRemoto*/ implements JuegoPublico/*,Serial
 	private MazoUno mazo = new MazoUno();
 	private MazoUno mazoDescarte = new MazoUno();
 	private int jugadorEnTurno = -1;
+	private int jugadorQueDijoUno = -1;
 	private String errorMsj = "";
 	private estadoJuego estado = estadoJuego.INICIAL;
 	
@@ -77,9 +78,7 @@ public class Juego /*extends ObservableRemoto*/ implements JuegoPublico/*,Serial
 	}
 
 	
-	public String getEstado() {
-		return estado.name();
-	}
+	
 	
 	public int getCantidadJugadores () {
 		return jugadores.size();
@@ -102,6 +101,100 @@ public class Juego /*extends ObservableRemoto*/ implements JuegoPublico/*,Serial
 			jugadoresDuplicados.add(jugador.duplicar());
 		return jugadoresDuplicados;
 	}
+
+	@Override
+	public int getJugadorEnTurno() {
+		return this.jugadorEnTurno;
+	}
+
+	@Override
+	public void uno(int numeroJugador) {
+		if(jugadores.get(numeroJugador).cantidadCartas() == 1) {
+			jugadorQueDijoUno = numeroJugador;
+			notificarObservadores(posiblesCambios.UN_JUGADOR_DIJO_UNO);
+		}else {
+			this.errorMsj = "Para decir UNO necesitas tener una sola carta!";
+			notificarObservadores(posiblesCambios.ERROR);
+			
+		}
+		
+	}
+	
+	/**
+	 *  Dado un indice de jugador, indica el indice del proximo jugador que se encuentra en estado JUGANDO 
+	 * @param jugadorActivoActual
+	 * @return
+	 */
+	private int siguienteJugadorActivo(int jugadorActivoActual) {
+		
+		int activo = -1;
+		int i;
+		if (jugadorActivoActual == -1)
+			i = 0;
+		else
+			i = jugadorActivoActual+1;
+
+		while ((activo == -1) && (i < jugadores.size())){
+			if (jugadores.get(i).isJugando())
+				activo = i;
+			else
+				i++;
+		}
+		i = 0;
+		while ((activo == -1) && ( i <= jugadorEnTurno)) {
+			if (jugadores.get(i).isJugando())
+				activo = i;
+			else
+				i++;
+		}
+		return activo;
+	}
+	
+	private int cantidadJugadoresActivos() {
+		int activos = 0;
+		for (Jugador jugador:jugadores) {
+			if (jugador.isJugando())
+				activos++;
+		}
+		return activos;
+	}
+
+	@Override
+	public String getEstado() {
+		return estado.name();
+	}
+	
+	public void comenzarJuego() {
+		CartaUno cartaInicial;
+		notificarObservadores(posiblesCambios.COMENZO_JUEGO);
+		mazo.mezclar();
+		cartaInicial = mazo.getUltimaCarta();
+		mazoDescarte.setUltimaCarta(cartaInicial);
+		cambiarEstado(estadoJuego.MOSTRANDO_CARTA_INICIAL);
+		repartirCartas();
+	}
+
+	/* (Modificar) 
+	 * Metodo para saber si la carta que el jugador descarta es compatible
+	 * 
+	public boolean compatible(CartaUno c) {
+	return this.getPalo() == ColoresBarajaUno.NEGRO
+			|| this.getPalo() == c.getPalo()
+			|| (this.getNumero() == c.getNumero() && !this.isEspecial() && !c.isEspecial())
+			|| (this.isEspecial() && c.isEspecial() && this.efecto == c.efecto);
+	}
+	*/
+	
+	
+	@Override
+	public void repartirCartas() {
+		
+		
+	}
+	
+	
+	
+	
 	
 
 }

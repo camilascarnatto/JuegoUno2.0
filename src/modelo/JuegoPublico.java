@@ -15,9 +15,14 @@ public interface JuegoPublico /* extends IObservableRemoto */{
 	int getCantidadJugadores();
 	
 	String getError();
+		
+	int getJugadorEnTurno();
+	
+	void uno(int numeroJugador);
 	
 	String getEstado();
 	
+	void repartirCartas();
 	
 	
 	/*
