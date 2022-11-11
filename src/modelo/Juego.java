@@ -174,22 +174,64 @@ public class Juego /*extends ObservableRemoto*/ implements JuegoPublico/*,Serial
 		repartirCartas();
 	}
 
-	/* (Modificar) 
-	 * Metodo para saber si la carta que el jugador descarta es compatible
-	 * 
-	public boolean compatible(CartaUno c) {
-	return this.getPalo() == ColoresBarajaUno.NEGRO
-			|| this.getPalo() == c.getPalo()
-			|| (this.getNumero() == c.getNumero() && !this.isEspecial() && !c.isEspecial())
-			|| (this.isEspecial() && c.isEspecial() && this.efecto == c.efecto);
+	/* Metodo para saber si la carta que el jugador descarta es compatible
+	 * con la que esta en el mazo de descarte
+	 *
+	 * */
+	public boolean compatible(CartaUno cartaADescartarPorJugador) {
+		CartaUno cartaMazoDescarte;
+		cartaMazoDescarte = mazo.getCartaDescartadas();
+	return cartaMazoDescarte.getPalo() == ColoresCartaUno.NEGRO
+			|| cartaMazoDescarte.getPalo() == cartaADescartarPorJugador.getPalo()
+			|| (cartaMazoDescarte.getNumero() == cartaADescartarPorJugador.getNumero() && !cartaMazoDescarte.isEspecial() && !cartaADescartarPorJugador.isEspecial())
+			|| (cartaMazoDescarte.isEspecial() && cartaADescartarPorJugador.isEspecial() && cartaMazoDescarte.getEfecto() == cartaADescartarPorJugador.getEfecto());
 	}
-	*/
+	
 	
 	
 	@Override
 	public void repartirCartas() {
+		for(Jugador jugador : this.jugadores) {
+			for (int i = 0; i < 7; i++) {
+				jugador.agregarCartas(mazo.getCartaMazo(true));
+			}
+		}
+		notificarObservadores(posiblesCambios.CARTAS_INICIALES_REPARTIDAS);
 		
+	}
+
+	@Override
+	public void jugar() {
+		if(!estado.equals(estadoJuego.TERMINADO)) {
+			if(estado == estadoJuego.SETEANDO || estado == estadoJuego.INICIAL) {
+				configurarJuego();
+			}else
+				if(estado == estadoJuego.JUGANDO) {
+					jugarMano();
+				}else msjError("El juego está terminado.");
+		}
 		
+	}
+
+	@Override
+	public void configurarJuego() {
+		if(estado.equals(estadoJuego.INICIAL)) {
+			cambiarEstado(estadoJuego.SETEANDO);
+		}else
+			cambiarEstado(estadoJuego.JUGABLE);
+		
+	}
+
+	@Override
+	public void jugarMano() {
+		jugadorEnTurno = siguienteJugadorActivo(jugadorEnTurno);
+		if(jugadorEnTurno == -1) {
+			cambiarEstado(estadoJuego.TERMINADO);
+			notificarObservadores(posiblesCambios.JUEGO_TERMINADO);
+		}else {
+			jugadores.get(jugadorEnTurno).setEnTurno(true);
+			notificarObservadores(posiblesCambios.NUEVO_TURNO_JUGADOR);
+		}
 	}
 	
 	

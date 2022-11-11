@@ -20,9 +20,9 @@ public interface IVista {
 	void iniciar();
 	void nuevasCartasJugadorAMostrarCartas(int jugadorAMostrarCartas);
 	void seleccionarJugador(ArrayList<Jugador> jugadores);
-	void comenzoJuego();
  */
 
+	void comenzoJuego();
 	void actualizarListaJugadores(ArrayList<Jugador> jugadores);
 	void setEstadoVista(EstadosVista estado);
 	void comenzar();

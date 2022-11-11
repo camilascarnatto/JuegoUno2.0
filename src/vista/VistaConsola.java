@@ -14,6 +14,7 @@ public class VistaConsola implements IVista {
 	
 	private Controlador controlador;
 	private EstadosVista estado;
+	private estadoJuego estadoJuego;
 	private ArrayList<Jugador> jugadores = new ArrayList<>();
 	
 	public VistaConsola () {
@@ -41,51 +42,98 @@ public class VistaConsola implements IVista {
 		case TERMINADO:
 			mostrarMenuSalir();
 			break;
+		case COMENZO:
+			mostrarMenuComienzo();
+		default:
+			break;
 		}
 		
 	}
 	
+	
+
 	private void mostrarMenuSeteando() {
-		Scanner sn = new Scanner(System.in);
-		boolean salir = false;
-		int opcion; // se guarda la opcion del usuario
-		
-		while(!salir) {
-			System.out.println(" ");
-			System.out.println("1. Agregar jugador");
-			System.out.println("2. Mostrar jugadores");
-			System.out.println("3. Salir");
-			System.out.println(" ");
+		try (Scanner sn = new Scanner(System.in)) {
+			boolean salir = false;
+			int opcion; // se guarda la opcion del usuario
 			
-			try {
-				System.out.println("Ingrese una opcion");
-				opcion = sn.nextInt();
+			while(!salir) {
+				System.out.println(" ");
+				System.out.println("1. Agregar jugador");
+				System.out.println("2. Mostrar jugadores");
+				System.out.println("3. Salir");
+				System.out.println(" ");
 				
-				switch(opcion) {
-					case 1: 
-						controlador.agregarJugador(pedirNombre());
-						break;
-					case 2:
-						// funcion que muestre la lista de jugadores
-						mostrarJugadores();
-						break;
-					case 3:
-						salir = true;
-						salirJuego();
-						break;
-					default:
-							System.out.println("Solo numeros entre 1 y 3");
-						
+				try {
+					System.out.println("Ingrese una opcion");
+					opcion = sn.nextInt();
+					
+					switch(opcion) {
+						case 1: 
+							controlador.agregarJugador(pedirNombre());
+							break;
+						case 2:
+							// funcion que muestre la lista de jugadores
+							mostrarJugadores();
+							break;
+						case 3:
+							salir = true;
+							salirJuego();
+							break;
+						default:
+								System.out.println("Solo numeros entre 1 y 3");
+							
+					}
+				} catch(InputMismatchException e) {
+					System.out.println("Debe insertar un numero");
+					sn.next();
 				}
-			} catch(InputMismatchException e) {
-				System.out.println("Debe insertar un numero");
-				sn.next();
+				
 			}
-			
 		}
 	}
 	
- 
+	private void mostrarMenuComienzo() {
+		
+		try (Scanner sn = new Scanner(System.in)) {
+			boolean salir = false;
+			int opcion; // se guarda la opcion del usuario
+			
+			while(!salir) {
+				System.out.println(" ");
+				System.out.println("1. Agregar jugador");
+				System.out.println("2. Mostrar jugadores");
+				System.out.println("3. Salir");
+				System.out.println(" ");
+				
+				try {
+					System.out.println("Ingrese una opcion");
+					opcion = sn.nextInt();
+					
+					switch(opcion) {
+						case 1: 
+							controlador.agregarJugador(pedirNombre());
+							break;
+						case 2:
+							// funcion que muestre la lista de jugadores
+							mostrarJugadores();
+							break;
+						case 3:
+							salir = true;
+							salirJuego();
+							break;
+						default:
+								System.out.println("Solo numeros entre 1 y 3");
+							
+					}
+				} catch(InputMismatchException e) {
+					System.out.println("Debe insertar un numero");
+					sn.next();
+				}
+				
+			}
+		}
+	}
 	private void mostrarMenuSalir() {
 		System.out.println("");
 		System.out.println("---------------------------------------");
@@ -168,6 +216,12 @@ public class VistaConsola implements IVista {
 
 	@Override
 	public void nuevoEstadoJuego(String estadoJuego) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void comenzoJuego() {
 		// TODO Auto-generated method stub
 		
 	}

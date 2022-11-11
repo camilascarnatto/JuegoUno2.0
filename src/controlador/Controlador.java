@@ -53,6 +53,8 @@ public class Controlador implements IObservador/*implements IControladorRemoto C
 		case ACTUALIZAR_LISTA_JUGADORES:
 			vista.actualizarListaJugadores(juego.getJugadores());
 			break;
+		case COMENZO_JUEGO:
+			vista.comenzoJuego();
 		case ERROR:
 			vista.error(juego.getError());
 			break;
@@ -77,6 +79,7 @@ public class Controlador implements IObservador/*implements IControladorRemoto C
 	
 	public String getEstadoJuego() {
 		return juego.getEstado().toString();
+		
 	}
 		
 	

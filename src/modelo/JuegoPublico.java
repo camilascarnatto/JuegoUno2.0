@@ -24,6 +24,11 @@ public interface JuegoPublico /* extends IObservableRemoto */{
 	
 	void repartirCartas();
 	
+	void jugar();
+
+	void configurarJuego();
+	
+	void jugarMano();
 	
 	/*
 	void gestionarEspejito(int numeroJugador, int cartaAHacerEspejito,long diferencia) throws RemoteException;
