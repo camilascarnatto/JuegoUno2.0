@@ -75,5 +75,7 @@ public class CartaUno extends Carta<ColoresCartaUno> {
 	public void setVisible(boolean visible) {
 		this.visible = visible;
 	}
+	
+	
 
 }
